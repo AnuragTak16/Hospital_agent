@@ -43,8 +43,39 @@ User hangs up → network signal → Twilio detects
 Patient → auto-created (via call)
 Doctor → created by admin
 Admin → created manually (once)
-Agent → system-created
+Agent → system-created 2
 
 # admin create doctor profile
 
 Admin request → Auth middleware → Role check (admin) → Create User → Create Doctor profile
+
+# stage 2: we use groq for intent extraction and response generation
+
+1. intent extraction
+2. response generation
+
+## intent extraction
+
+User speaks
+↓
+Speech-to-Text (STT) (Deepgram)
+↓
+Text → AI() (intent extraction)
+↓
+Backend API call
+↓
+Response text
+↓
+Text-to-Speech (TTS) (Deepgram)
+↓
+Audio response to user
+
+# we use service for intent extraction and booking
+
+1. intentService.js
+2. bookingService.js
+
+# after this all we setup : Conversation + Interaction layer
+
+1. twilio
+2. deepgram

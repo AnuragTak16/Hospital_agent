@@ -1,8 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { allowRoles, authMiddleware } from '../middleware/auth_middleware.js';
+
 const router = express.Router();
 
-router.get('/admin', (req, res) => {
-  res.send('Admin route');
+router.get('/admin', authMiddleware, allowRoles('admin'), (req, res) => {
+  res.json({ message: 'Admin route', role: req.user.role });
 });
 
-module.exports = router;
+export default router;

@@ -14,7 +14,12 @@ router.post(
   allowRoles('admin'),
   createAvailability,
 );
-router.get('/', authMiddleware, allowRoles('admin', 'agent'), getAvailability);
+router.get(
+  '/availability',
+  authMiddleware,
+  allowRoles('admin', 'agent'),
+  getAvailability,
+);
 
 router.post(
   '/availability/bulk',

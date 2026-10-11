@@ -79,3 +79,19 @@ Audio response to user
 
 1. twilio
 2. deepgram
+
+## Deepgram + Twilio call flow (implemented)
+
+User dials → POST /api/voice
+→ Deepgram TTS greeting (Play) + Record
+→ POST /api/twilio/process_speech
+→ Download recording (Twilio auth) → Deepgram STT
+→ Groq intent → bookingService
+→ Deepgram TTS confirmation → Play audio
+
+Required env:
+- DEEPGRAM_API_KEY
+- PUBLIC_BASE_URL (reachable by Twilio, e.g. ngrok)
+- TWILIO_ACCOUNT_SID + TWILIO_AUTH_TOKEN (to download recordings for STT)
+
+Audio files are served at GET /api/twilio/audio/:filename

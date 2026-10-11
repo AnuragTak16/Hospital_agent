@@ -12,7 +12,8 @@ export const autoBookAppointment = async (req, res) => {
   try {
     console.log('REQ BODY:', req.body);
 
-    const { phone, name, specialization, date } = req.body;
+    const { phone, specialization, date } = req.body;
+    let { name } = req.body;
 
     if (!phone || !specialization) {
       throw new Error('Phone and specialization are required');

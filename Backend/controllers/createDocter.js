@@ -37,6 +37,7 @@ export const createDoctor = async (req, res) => {
       docterName: name,
       userId: user._id,
       specialization,
+      phone,
     });
 
     return res.status(201).json({
